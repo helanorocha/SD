@@ -7,44 +7,37 @@ import java.io.InputStreamReader;
 
 
 
+
 import lab.io.*;
 public class LerTeclado {
 
-	InputStream	inputStream;
-	InputStreamReader inputStreamReader;
-	BufferedReader bufferedReader;
-	
-	public LerTeclado() throws IOException{
-			
-			System.out.print("Digite um texto:");
-			
-			//Ler cadeia de bytes de um teclado
-			InputStream inputStream = System.in;
-			
-			//Converte para Char
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			
-			//Concatena o conjunto de Char em uma String
-			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-			
+	InputStream inputStream = System.in;
+	InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+	BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-			
-			
-			//System.out.println("O texto digitado foi: " + line);
-			
-			
-		}
-		public String lerLinha() throws IOException{
-			//Lê uma linha
-			String line = bufferedReader.readLine();
-			return line;
-			
-		}
-		
-		public void close() throws IOException{
-		//Close
+	public LerTeclado() throws IOException {
+
+		// Ler cadeia de bytes de um teclado
+		InputStream inputStream = System.in;
+
+		// Converte para Char
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+		// Concatena o conjunto de Char em uma String
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+	}
+
+	public String lerLinha() throws IOException {
+
+		// Lê uma linha
+		String line = bufferedReader.readLine();
+		return line;
+	}
+	
+		public void close() throws IOException {
+
+		// Close
 		bufferedReader.close();
-		{
-}
-		}
+	}
 }
