@@ -2,19 +2,29 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
+
+import lab.io.EscreverArquivo;
+import lab.io.LerTeclado;
+import servidor.ServidorThread;
 import NegocioLoc.Cliente;
 import NegocioLoc.Filmes;
 import NegocioLoc.Funcionario;
-import lab.io.EscreverArquivo;
-import lab.io.LerTeclado;
 
 
 
 public class Main {
 	private static InputStream is = new BufferedInputStream(System.in);
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					new ServidorThread();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 		
 		int opcao = 0;
 		Scanner s = new Scanner(is);
@@ -49,7 +59,7 @@ public class Main {
 					break;
 				case 2:
 					//Cadastro de funcionários
-					EscreverArquivo escreverArquivo1 = new EscreverArquivo("RegistroFuncionarios");
+//					EscreverArquivo escreverArquivo1 = new EscreverArquivo("RegistroFuncionarios");
 					LerTeclado lerTeclado1 = new LerTeclado();
 					Funcionario funcionario = new Funcionario();
 
@@ -60,10 +70,12 @@ public class Main {
 					System.out.println("Informe a lotação do Funcionário:");
 					String lotacao = lerTeclado1.lerLinha();
 					funcionario.setLotacao(lotacao);
+					String mensagem = "RegistroFuncionarios#"+funcionario.toString();
+					
+					new servidor.Cliente(mensagem);
+//					escreverArquivo1.escreverLinha(funcionario.toString());
 
-					escreverArquivo1.escreverLinha(funcionario.toString());
-
-					escreverArquivo1.close();
+//					escreverArquivo1.close();
 					break;
 					
 				case 3:
